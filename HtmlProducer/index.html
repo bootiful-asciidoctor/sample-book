@@ -542,7 +542,11 @@ table.CodeRay td.code>pre{padding:0}
 <li><a href="#_next_steps">Next Steps</a></li>
 </ul>
 </li>
-<li><a href="#acknowledgements">Acknowledgements</a></li>
+<li><a href="#acknowledgements">Acknowledgements</a>
+<ul class="sectlevel2">
+<li><a href="#_some_code">Some Code</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -593,13 +597,44 @@ table.CodeRay td.code>pre{padding:0}
 <div class="paragraph">
 <p>Thank you!</p>
 </div>
+<div class="sect2">
+<h3 id="_some_code">Some Code</h3>
+<div class="paragraph">
+<p>You know what would be nice right about now? An include. Yah. An include. I&#8217;m all about inclusivity, inclusion, and code includes.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">package</span> <span class="namespace">rsb.data.r2dbc</span>;
+
+<span class="keyword">import</span> <span class="include">org.springframework.context.annotation.Bean</span>;
+<span class="keyword">import</span> <span class="include">org.springframework.context.annotation.Configuration</span>;
+<span class="keyword">import</span> <span class="include">org.springframework.context.annotation.Import</span>;
+<span class="keyword">import</span> <span class="include">org.springframework.transaction.reactive.TransactionalOperator</span>;
+
+<span class="annotation">@Configuration</span>
+<span class="annotation">@Import</span>(CustomerDatabaseInitializer.class)
+<span class="directive">public</span> <span class="type">class</span> <span class="class">CommonAutoConfiguration</span> {
+
+        <span class="annotation">@Bean</span>
+        CustomerService defaultCustomerService(SimpleCustomerRepository cr,
+                        TransactionalOperator to, CustomerDatabaseInitializer dbi) {
+                <span class="keyword">return</span> <span class="keyword">new</span> CustomerService(cr, to, dbi);
+        }
+
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Not bad, eh?</p>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2020-09-13 04:15:24 PDT
+Last updated 2020-09-13 04:23:39 PDT
 </div>
 </div>
 </body>
