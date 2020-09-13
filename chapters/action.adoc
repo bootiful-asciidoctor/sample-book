@@ -1,0 +1,17 @@
+[[action]]
+= Action!
+
+The book is done (for now) but there's still more to learn and do! In this section I'll provide a few things you want to bookmark or buy.
+
+== Websites to Bookmark
+
+You should bookmark the following locations for your own reference and edication for later.
+ 
+== Additional reading
+
+Want to learn more and take the next steps? Check out the following resources.
+
+
+== Next Steps
+
+You've come this far. Take some time off, and then go build the next big thing.

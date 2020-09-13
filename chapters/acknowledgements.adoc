@@ -1,0 +1,8 @@
+[[acknowledgements]]
+= Acknowledgements
+
+Thank you, dear community, for the inspiration.
+
+Thank you http://twitter.com/mojavelinux[Dan Allen (@mojavelinux)] and the https://asciidoctor.org[Asciidoctor] community for their tireless work on such an amazing technology.
+
+Thank you!
