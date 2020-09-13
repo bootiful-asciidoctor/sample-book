@@ -6,3 +6,15 @@ Thank you, dear community, for the inspiration.
 Thank you http://twitter.com/mojavelinux[Dan Allen (@mojavelinux)] and the https://asciidoctor.org[Asciidoctor] community for their tireless work on such an amazing technology.
 
 Thank you!
+
+== Some Code
+
+You know what would be nice right about now? An include. Yah. An include. I'm all about inclusivity, inclusion, and code includes.
+
+
+[source,java,indent=0]
+----
+include::{code}/data/r2dbc/src/main/java/rsb/data/r2dbc/CommonAutoConfiguration.java[]
+----
+
+Not bad, eh? 
