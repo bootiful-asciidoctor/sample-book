@@ -18,7 +18,7 @@ jobs:
     steps:
 
       - name: trigger the book publication pipeline 
-        run: pwd && ${GITHUB_WORKSPACE}/github/workflows/trigger_book_build.sh
+        run: pwd && ${GITHUB_WORKSPACE}/.github/workflows/trigger_book_build.sh
 
 
 
