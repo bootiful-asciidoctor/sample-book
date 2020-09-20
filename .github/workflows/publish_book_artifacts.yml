@@ -1,0 +1,30 @@
+name: CI
+
+env:
+  GH_REPO_ORG_NAME: bootiful-asciidoctor
+  GH_REPO_REPO_NAME: sample-pipeline
+  GH_PAT: ${{ secrets.GH_PAT }}
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: trigger the book publication pipeline 
+        run: |
+        curl -H "Accept: application/vnd.github.everest-preview+json" -H "Authorization: token ${GH_PAT}" --request POST  --data '{"event_type": "update-event"}' https://api.github.com/repos/${GH_REPO_ORG_NAME}/${GH_REPO_REPO_NAME}/dispatches
+        echo "triggered an update-event"
+
+
+
+
+
+
+
