@@ -17,8 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: trigger the book publication pipeline 
-        run: pwd 
+      - run: pwd 
       - run: ls -la ${GITHUB_WORKSPACE}
       - run: ${GITHUB_WORKSPACE}/.github/workflows/trigger_book_build.sh 
 
