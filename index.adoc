@@ -21,7 +21,6 @@ endif::[]
 :pdf-style: screen
 :leveloffset: 1
 
-
 toc::[]
 
 :sectnums!:
