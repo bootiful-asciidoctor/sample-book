@@ -1,8 +1,8 @@
 name: CI
 
 env:
-  PIPELINE_ORG_NAME: bootiful-asciidoctor
-  PIPELINE_REPO_NAME: sample-pipeline
+  PIPELINE_ORG_NAME: spring-integration-book-2
+  PIPELINE_REPO_NAME: pipeline
   GH_PAT: ${{ secrets.GH_PAT }}
 
 on:
