@@ -1,9 +1,9 @@
 :tilde: ~
-:author: An Author
-:email:  author@book.com
+:author: Mario Gray
+:email:  mario.gray@gmail.com
 :revnumber: 1.0
 :revdate: {docdate}
-:revyear: 2020
+:revyear: 2021
 :keywords: Asciidoctor, Pipelines, OSS, Publication
 :doctype: book
 :media: screen
@@ -22,6 +22,8 @@ endif::[]
 :leveloffset: 1
 
 toc::[]
+
+
 
 :sectnums!:
 
