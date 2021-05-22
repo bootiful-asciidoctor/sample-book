@@ -11,7 +11,6 @@ You should bookmark the following locations for your own reference and edication
 
 Want to learn more and take the next steps? Check out the following resources.
 
-
 == Next Steps
 
 You've come this far. Take some time off, and then go build the next big thing.

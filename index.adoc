@@ -4,7 +4,7 @@
 :revnumber: 1.0
 :revdate: {docdate}
 :revyear: 2021
-:keywords: Asciidoctor, Pipelines, OSS, Publication
+:keywords: Spring Integration, Spring Boot, Spring Framework, Enterprise Application Integration, EAI, Messaging
 :doctype: book
 :media: screen
 ifeval::["{media}" != "prepress"]
@@ -23,14 +23,11 @@ endif::[]
 
 toc::[]
 
-
-
 :sectnums!:
 
 include::chapters/about.adoc[]
 
 include::chapters/action.adoc[]
-
 
 [acknowledgements]
 include::chapters/acknowledgements.adoc[]

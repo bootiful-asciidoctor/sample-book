@@ -1,11 +1,7 @@
 [[acknowledgements]]
 = Acknowledgements
 
-Thank you, dear community, for the inspiration.
-
-Thank you http://twitter.com/mojavelinux[Dan Allen (@mojavelinux)] and the https://asciidoctor.org[Asciidoctor] community for their tireless work on such an amazing technology.
-
-Thank you!
+I want to thank myself. 
 
 == Some Code
 
@@ -14,7 +10,7 @@ You know what would be nice right about now? An include. Yah. An include. I'm al
 
 [source,java,indent=0]
 ----
-include::{code}/data/r2dbc/src/main/java/rsb/data/r2dbc/CommonAutoConfiguration.java[]
+include::{code}/bootcamp/README.md[]
 ----
 
 Not bad, eh? 
