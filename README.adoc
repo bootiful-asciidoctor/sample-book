@@ -1,43 +1,127 @@
 # Spring Integration Book 
 
+[[welcome]]
+== Introduction to this Book
+* Intro
+* Explain the graph and code-sample style
+* Asynchrony - callbacks and lambdas oh my
+* Describe the build for code-samples
 
+== From beans to Boot
+* The Stack - Spring for CIS Modernization (exploring Spring)
+* Making the transition to Spring Boot
 
-## Basics 
-* Introduction
-* From beans to Boot
-* Making the case for messaging (why not RPC, file transfer, and shared database?)
-* DSLs: XML, Spring Integration components, Java Configuration DSL, and Kotlin DSL
+== Spring Integration Componentry
+* High-Level overview of Spring Integration Components
 
-## The Architecture of Integration
-* Channels 
-* Transformations 
-* Message flows and routing 
-* The Adapter Chapter (and Gateways)
-* Consistency: transactions, distributed locks and retries
-* Production 
-	** error handling 
-	** monitoring 
-	** security 
-* What do you mean by "Event Driven"? 
-    ** Event notification 
-    ** Event-carried state transfer
-    ** Event-sourcing && CQRS 
-    
-## Discovering Spring Integration 
-* File transfer (Files, FTP, FTPS)
-* RPC
-* HTTP (HTTP/2, REST)
-* Message Brokers: JMS, Kafka, AMQP/RabbitMQ
-* Reactive programming (RSocket, FluxChannel, Splitters, etc)
-* Lightweight messaging with XMPP/STOMP/WebSockets/MQTT
-* TCP/UDP
-* Persistence (JDBC/R2DBC, JPA, Redis, Mongod)
+== Spring Integration Configuration DSLs: 
+* Focus on DSL Strengths
+* XML DSL 
+* Java-Config DSL
+* Kotlin DSL
 
-## Spring Integration in Practice
-* Message Routing 
-* Batch Processing with Spring Batch 
-* Stream Processing with Spring Cloud Stream
-* Building Apps for Spring Cloud Data Flow 
-* Business Process Management with Flowable 
-* Native Images with Spring Native
-* The Cloud: Azure Service Bus; Google Cloud Pub/Sub; Kinesis; etc.
+[[the-architecture-of-integration]]
+== Making the case for messaging
+* Why messaging is effective (why not RPC, file transfer, and shared database?)
+
+== Channels
+* Types of channels and their EIP focused use-cases (PUB-SUB, P2P…)
+
+== Transformations 
+* Metadata handling review
+* Message Transformation w/ EIP review
+
+== Message flows and routing
+* Content vs Context routing
+* Routing w/ EIP review 
+
+== The Adapter Chapter 
+* Review Adapter pattern
+* Data-type and Protocol boundaries
+* Gateways
+
+== Consistency
+* Review Transactions
+* Distributed Locks 
+* Retries
+
+== Production
+* Review Error handling
+* Monitoring
+* Security
+
+== Did you say, “Event Driven”?
+* Review Event-notification
+* Event-carried state transfer
+* Event-sourcing and CQRS
+
+[[spring-integration-component-implementations]]
+== File transfer
+* Review Reading / Writing / Scanning / Polling / Tailing FS
+* Review S/FTP adapters
+* In/Out-bound gateways
+
+== RPC
+* Review RMI, Invoker, JAX, WS*, etc…
+
+== HTTP
+* Review HTTP/2
+* Overview of REST
+* Component Implementations (RestTemplate, etc..)
+
+== Message Brokers: 
+* Architectural Review of JMS
+* Review Kafka Integration
+* Review AMQP/Rabbit Integration
+
+== Reactive programming 
+* Review RSocket
+* FluxChannel
+* Splitters
+
+== Lightweight messaging 
+* Review XMPP/STOMP
+* WebSocket
+* MQTT
+
+== TCP/UDP
+* Review Inbound/Outbound Channel Adapters
+* Inbound/Outbound Gateways
+* NIO
+
+== Persistence
+* Review JDBC/R2DBC
+* JPA
+* Redis, Monogd, etc..
+Part FOUR – Spring Integration in Practice
+
+== Message Routing
+* Review SI Specific Router Implementations
+
+== Batch Processing w/ Spring Batch
+* Batch Process Review
+* Spring Batch App Overview
+
+== Stream Processing w/ Spring Cloud Stream
+* Stream Processing Review
+* Spring Cloud Stream App Overview
+
+== Building Apps for Spring Cloud Data Flow
+* SCDF review 
+* SCDF component integration
+* SCDF deployment OPS
+
+== Business Process Management with Flowable
+* Review Open-Source ‘Flowable’ 
+* Flowable App Overview
+
+== Native Images with Spring Native
+* Making the case for native
+* Review Spring Native Project
+* Review native deployment plan
+
+== Cloud Messaging 
+* Overview 
+* Review Azure Service Bus
+* GCP Pub/Sub; 
+* AWS/Kenesis
