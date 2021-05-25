@@ -1,6 +1,7 @@
 [[bootstrap]]
 = Bootcamp
 
+
 To appreciate reactive programming in the broader ecosystem's context, we'll need to learn about Spring. What is Spring? What is dependency injection? Why do we use Spring Boot over (or in addition to?) Spring Framework? This chapter is a primer on the basics. We don't talk about reactive programming in this chapter at all. If you already know the fundamentals of dependency injection, inversion-of-control, Java configuration, Spring application contexts, aspect-oriented programming (AOP),  and Spring Boot auto-configuration, skip this chapter!
 
 For the rest of us, we're going to demonstrate some key concepts by building something. We'll begin our journey, as usual, at my _second_ http://start.Spring.io[favorite place on the internet, the Spring Initializr -  Start dot Spring dot IO]. Our goal is to build a trivial application. I specified `rsb` in the `Group` field and `bootstrap` in the `Artifact` field, though please feel free to select whatever you'd like. Select the following dependencies using the combo box text field on the bottom right of the page where it says `Search for dependencies`: `DevTools`,  `Web`, `H2`, `JDBC`, `Actuator` and `Lombok`.
