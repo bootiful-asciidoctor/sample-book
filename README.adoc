@@ -7,7 +7,7 @@
 * Asynchrony - callbacks and lambdas oh my
 * Describe the build for code-samples
 
-== From beans to Boot
+== Bootcamp: from Beans to Boot
 * The Stack - Spring for CIS Modernization (exploring Spring)
 * Making the transition to Spring Boot
 
