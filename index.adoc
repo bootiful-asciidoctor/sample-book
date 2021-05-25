@@ -29,5 +29,8 @@ include::chapters/about.adoc[]
 
 include::chapters/action.adoc[]
 
+include::chapters/bootstrap.adoc[]
+
+
 [acknowledgements]
 include::chapters/acknowledgements.adoc[]
