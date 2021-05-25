@@ -1,4 +1,4 @@
 [[about-the-author]]
-= About the Author
+= About Mario Gray
 
-This author has authored things in the past and they will hopefully do so again in the future. Who knows? The Shadow knows!
+Mario Gray (https://twitter.com/mariogray[@mariogray]) is a Developer Advocate at Tanzu, a divison of VMWare. `emacs` is _dead_! All hail `emacs`!
