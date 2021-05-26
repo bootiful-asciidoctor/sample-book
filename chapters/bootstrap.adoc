@@ -4,7 +4,7 @@
 
 To appreciate reactive programming in the broader ecosystem's context, we'll need to learn about Spring. What is Spring? What is dependency injection? Why do we use Spring Boot over (or in addition to?) Spring Framework? This chapter is a primer on the basics. We don't talk about reactive programming in this chapter at all. If you already know the fundamentals of dependency injection, inversion-of-control, Java configuration, Spring application contexts, aspect-oriented programming (AOP),  and Spring Boot auto-configuration, skip this chapter!
 
-For the rest of us, we're going to demonstrate some key concepts by building something. We'll begin our journey, as usual, at my _second_ http://start.Spring.io[favorite place on the internet, the Spring Initializr -  Start dot Spring dot IO]. Our goal is to build a trivial application. I specified `rsb` in the `Group` field and `bootstrap` in the `Artifact` field, though please feel free to select whatever you'd like. Select the following dependencies using the combo box text field on the bottom right of the page where it says `Search for dependencies`: `DevTools`,  `Web`, `H2`, `JDBC`, `Actuator` and `Lombok`.
+For the rest of us, we're going to demonstrate some key concepts by building something. We'll begin our journey, as usual, at my _second_ http://start.Spring.io[favorite place on the internet, the Spring Initializr -  Start dot Spring dot IO]. Our goal is to build a trivial application. I specified `sib` in the `Group` field and `bootstrap` in the `Artifact` field, though please feel free to select whatever you'd like. Select the following dependencies using the combo box text field on the bottom right of the page where it says `Search for dependencies`: `DevTools`,  `Web`, `H2`, `JDBC`, `Actuator` and `Lombok`.
 
 `Devtools` lets us restart the application by running our IDE's build command. No need to restart the entire JVM process. This lets us iterate quicker and see changes in the compiled code quicker. It also starts up a Livereload-protocol server. Some excellent browser plugins out there can listen for messages on this server and force the browser page to refresh, giving you a seamless what-you-see-is-what-you-get experience.
 
@@ -63,7 +63,7 @@ Suppose we've written an interface, `CustomerService`, for which we need to prov
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/CustomerService.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/CustomerService.java[]
 ----
 
 The work of the `CustomerService` implementation itself isn't so interesting as how it's ultimately wired together. The wiring of the implementation - which objects are used to satisfy its dependencies - has an impact on how easy it is to change the implementation later on. This cost grows as you add more types to a system. The long tail of software project costs is in maintenance, so it is _always_ cheaper to write maintainable code upfront.
@@ -75,7 +75,7 @@ To keep things simple and distracting discussions around object-relational mappe
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/BaseCustomerService.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/BaseCustomerService.java[]
 ----
 <1> This is a public class because we'll have several different implementations, in different packages, in this chapter. Normally you wouldn't have multiple implementations in different packages, and you should strive to assign a type the least visible modifier. A great majority of my code is package-private (no modifier at all).
 <2> The `JdbcTemplate` reference to talk to our `DataSource`
@@ -90,7 +90,7 @@ The first cut at that implementation might depend on a `java.sql.DataSource` ins
 .A naive implementation of `CustomerService.java` - _don't_ do this!
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/hardcoded/DevelopmentOnlyCustomerService.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/hardcoded/DevelopmentOnlyCustomerService.java[]
 ----
 <1> This is brittle. It hardcodes the creation recipe for the `DataSource`, here using an embedded H2 in-memory SQL database, in the `CustomerService` implementation itself.
 
@@ -101,7 +101,7 @@ The `DataSource` requires some initialization before any consumers can use it. T
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/DataSourceUtils.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/DataSourceUtils.java[]
 ----
 <1> the `ResourceDatabasePopulator` comes from the Spring Framework. It supports executing SQL statements against a `DataSource` given one or more SQL files. It even has options around whether to fail the initialization if, for example, a database table already exists when trying to run a `CREATE TABLE` operation or whether to continue.
 <2> Spring provides an abstraction, `Resource`, that represents some sort of resource with which we might want to perform input and output. The `ClassPathResource` represents resources found in the classpath of an application.
@@ -110,7 +110,7 @@ Here's an example demonstrating how we might wire up such an implementation.
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/hardcoded/Application.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/hardcoded/Application.java[]
 ----
 
 
@@ -119,7 +119,7 @@ We exercise the resulting implementation with `Demo#workWithCustomerService(Cust
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/Demo.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/Demo.java[]
 ----
 <1> announce generally what we're doing
 <2> write some data to the database using our implementation
@@ -136,7 +136,7 @@ The simplest thing we can do to improve our example, and restore optionality, is
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/basicdi/DataSourceCustomerService.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/basicdi/DataSourceCustomerService.java[]
 ----
 <1> Not much to it! It's a class with a constructor that invokes the super constructor.
 
@@ -145,7 +145,7 @@ Here's the refactored `main` method.
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/basicdi/Application.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/basicdi/Application.java[]
 ----
 <1> Our `CustomerService` depends only on a pointer to a `DataSource`. So, if we decide to change this reference tomorrow, we can!
 <2> Much better! Our `CustomerService` only cares that it has a fully-formed `DataSource` reference. It doesn't need to know about initialization logic.
@@ -166,7 +166,7 @@ So, Spring provides the `TransactionTemplate`, which reduces this to a one-liner
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/templates/TransactionTemplateCustomerService.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/templates/TransactionTemplateCustomerService.java[]
 ----
 <1> this class depends on having a `TransactionTemplate` in addition to a `DataSource`
 
@@ -174,7 +174,7 @@ Much better! We only even bother to catch the exception so that we can return a 
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/templates/Application.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/templates/Application.java[]
 ----
 <1> initialize a `DataSource`, just as before...
 <2> create an instance of `PlatformTransactionManager` called `DataSourceTransactionManager`.
@@ -197,7 +197,7 @@ Spring is ultimately a big bag of beans. It manages the beans and their lifecycl
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/context/Application.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/context/Application.java[]
 ----
 <1> the `Application` class is _also_ a `@Configuration` class. It is a class that has methods annotated with `@Bean` whose return values are objects to be stored and made available for other objects in the application context
 <2> The definition of our `DataSource` changes depending on whether we're running the application in a development context or production. We have stored those definitions in another configuration class, which we import here. We'll review those definitions momentarily.
@@ -213,7 +213,7 @@ We can recreate the entire application by recreating the `ApplicationContext`.. 
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/SpringUtils.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/SpringUtils.java[]
 ----
 <1> we're using an `ApplicationContext` instance that can handle annotation-centric configuration, also known as "Java configuration".
 <2> You can tell Spring to create, or not create, objects based on various conditions. One condition is, "does this bean have a profile associated with it?" A profile is a label, or a tag, attached to an object's definition. We haven't seen one yet, but we will. By setting an active profile, we're saying: "create all objects that have no profile associated with them, _and_ create all objects associated with the specific profiles that we make active."
@@ -226,7 +226,7 @@ Spring has an `Environment` object that you can inject anywhere you want it, tha
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/DataSourceConfiguration.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/DataSourceConfiguration.java[]
 ----
 <1> `@Configuration` classes can act as a container for other configuration classes. When we import the `DataSourceConfiguration` class, Spring also resolves any nested configuration classes.
 <2> This configuration class is only meant to be active when the `prod` profile is active.
@@ -260,7 +260,7 @@ Let's rework our application, ever so slightly, in the light of component scanni
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/scan/Application.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/scan/Application.java[]
 ----
 <1> The only thing of note here is that we've enabled component scanning using the `@ComponentScan` annotation and that we don't have a bean provider method for the `CustomerService` type since Spring will now automatically detect that type in the component scan.
 
@@ -268,7 +268,7 @@ It will discover the `CustomerService` type in the component scan, _if_, that is
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/scan/DiscoveredCustomerService.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/scan/DiscoveredCustomerService.java[]
 ----
 <1> the `@Service` annotation is a stereotype annotation. This class exists in the same package as `Application.java`, only to allow us to annotate it so that it can be discovered. Most codebases will have much shallower hierarchies. The stereotype annotation will live on the class with the business logic's implementation, not just a subclass of some other thing extracted into another package just for improvement as in this book!
 <2> the `Application` class defines instances of these types, so we know that Spring can satisfy these dependencies.
@@ -280,7 +280,7 @@ We introduced Spring and added a class to support our configuration. We extricat
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/enable/Application.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/enable/Application.java[]
 ----
 <1> the _only_ difference now is that we're enabling declarative transaction management.
 
@@ -288,7 +288,7 @@ This is otherwise the same as any other example, except that we have the one ext
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/enable/TransactionalCustomerService.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/enable/TransactionalCustomerService.java[]
 ----
 <1> this is the only thing that we have to do - decorate the Spring bean with `@Transactional`.
 
@@ -332,7 +332,7 @@ First, let's look a the `Application` class.
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/bootiful/Application.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/bootiful/Application.java[]
 ----
 <1>  `@SpringBootApplication` is an annotation that itself is meta-annotated with a few other annotations including `@Configuration`, `@ComponentScan` and `@EnableAutoConfiguration`. The first two should be familiar, but we'll come back to the last one in a moment.
 <2> This application has code that runs under different profiles. Spring can take a hint from the environment as to which profile should be active in several different ways, including environment variables or Java `System` properties. I'd _normally_ stick with just using the environment variables.
@@ -344,12 +344,12 @@ The event listener mechanism is nice because it means we no longer have to muddy
 
 The `@EnableAutoConfiguration` annotation, though not seen, is arguably the most important part of the code we just looked at. It activates Spring Boot's auto-configuration. Auto-configuration classes are run by the framework at startup time and given a chance to contribute objects to the resulting object graph. Specifically, when Spring Boot starts up it inspects the text file, `META-INF/spring.factories`, in all `.jar` artifacts on the CLASSPATH.  Spring Boot itself provides one, but your code could as well. The `spring.factories` text file enumerates keys and values associated with those keys.
 
-Therein, Spring Boot inspects a line that begins with `org.springframework.boot.autoconfigure.EnableAutoConfiguration`.  This line has as its value a _yuuuuge_ list of fully-qualified class names. These class names are Java configuration classes. They're classes that, in turn, contribute objects to the Spring object graph. Objects that do the things we'd much rather not do. Like, configure a web server. Or a `DataSource`.  Or a `PlatformTransactionManager` and `TransactionTemplate`. Did you notice that we didn't import the `rsb.bootstrap.DataSourceConfiguration` class as we did in previous examples? That we didn't define anything, really, except the bean required to exercise our `CustomerService` implementation.
+Therein, Spring Boot inspects a line that begins with `org.springframework.boot.autoconfigure.EnableAutoConfiguration`.  This line has as its value a _yuuuuge_ list of fully-qualified class names. These class names are Java configuration classes. They're classes that, in turn, contribute objects to the Spring object graph. Objects that do the things we'd much rather not do. Like, configure a web server. Or a `DataSource`.  Or a `PlatformTransactionManager` and `TransactionTemplate`. Did you notice that we didn't import the `sib.bootstrap.DataSourceConfiguration` class as we did in previous examples? That we didn't define anything, really, except the bean required to exercise our `CustomerService` implementation.
 
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/bootiful/BootifulCustomerService.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/bootiful/BootifulCustomerService.java[]
 ----
 <1> This implementation simply extends the existing `@Transactional`-annotated example. We could've defined that bean using a `@Bean`  provider method, too, I suppose.
 
@@ -359,7 +359,7 @@ This auto-configuration is helpful already, but we can do a whole lot more. Let'
 
 [source,java,indent=0]
 ----
-include::{code}/bootstrap/src/main/java/rsb/bootstrap/bootiful/BootifulRestController.java[]
+include::{code}/bootstrap/src/main/java/sib/bootstrap/bootiful/BootifulRestController.java[]
 ----
 <1> This is another stereotype annotation, quite like `@Component` and `@Service`. It is itself meta-annotated with `@Component`. It tells Spring that this class is also a `@Component` but that it is specialized; it exposes handlers that it expects Spring MVC, the web framework in play here, to map to incoming HTTP requests
 <2> Spring MVC knows which HTTP requests to match to which handler based on the handler methods' mapping annotations. Here, this handler method is mapped to HTTP GET requests for the URL `/customers`.
@@ -404,7 +404,7 @@ We've got an application up and running, and we've even got Actuator in there. A
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-maven-plugin</artifactId>
     <configuration>
-        <mainClass>rsb.bootstrap.bootiful.Application</mainClass>
+        <mainClass>sib.bootstrap.bootiful.Application</mainClass>
     </configuration>
 </plugin>
 ----
