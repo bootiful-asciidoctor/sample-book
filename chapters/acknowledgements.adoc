@@ -7,7 +7,6 @@ Thank you http://twitter.com/mojavelinux[Dan Allen (@mojavelinux)] and the https
 
 Thank you!
 
-== Some Code
 
 You know what would be nice right about now? An include. Yah. An include. I'm all about inclusivity, inclusion, and code includes.
 
