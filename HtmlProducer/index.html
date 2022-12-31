@@ -535,7 +535,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <span id="author" class="author">An Author</span><br>
 <span id="email" class="email"><a href="mailto:author@book.com">author@book.com</a></span><br>
 <span id="revnumber">version 1.0,</span>
-<span id="revdate">2022-12-25</span>
+<span id="revdate">2022-12-31</span>
 </div>
 </div>
 <div id="content">
@@ -608,24 +608,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">package</span> <span class="namespace">rsb.data.r2dbc</span>;
-
-<span class="keyword">import</span> <span class="include">org.springframework.context.annotation.Bean</span>;
-<span class="keyword">import</span> <span class="include">org.springframework.context.annotation.Configuration</span>;
-<span class="keyword">import</span> <span class="include">org.springframework.context.annotation.Import</span>;
-<span class="keyword">import</span> <span class="include">org.springframework.transaction.reactive.TransactionalOperator</span>;
-
-<span class="annotation">@Configuration</span>
-<span class="annotation">@Import</span>(CustomerDatabaseInitializer.class)
-<span class="directive">public</span> <span class="type">class</span> <span class="class">CommonAutoConfiguration</span> {
-
-        <span class="annotation">@Bean</span>
-        CustomerService defaultCustomerService(SimpleCustomerRepository cr, TransactionalOperator to,
-                        CustomerDatabaseInitializer dbi) {
-                <span class="keyword">return</span> <span class="keyword">new</span> CustomerService(cr, to, dbi);
-        }
-
-}</code></pre>
+<pre class="CodeRay highlight"><code data-lang="java">Unresolved directive in chapters/acknowledgements.adoc - include::/home/runner/Desktop/root/code/data/r2dbc/src/main/java/rsb/data/r2dbc/CommonAutoConfiguration.java<span class="type">[]</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -637,7 +620,7 @@ table.CodeRay td.code{padding:0 0 0 .75em}
 <div id="footer">
 <div id="footer-text">
 Version 1.0<br>
-Last updated 2022-12-25 23:48:07 UTC
+Last updated 2022-12-31 06:14:40 UTC
 </div>
 </div>
 </body>
