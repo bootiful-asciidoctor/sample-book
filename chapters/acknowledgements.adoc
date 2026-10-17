@@ -13,7 +13,7 @@ You know what would be nice right about now? An include. Yah. An include. I'm al
 
 [source,java,indent=0]
 ----
-include::{code}/data/r2dbc/src/main/java/rsb/data/r2dbc/CommonAutoConfiguration.java[]
+include::{code}/data/r2dbc-common/src/main/java/rsb/data/r2dbc/CommonAutoConfiguration.java[]
 ----
 
 Not bad, eh? 
